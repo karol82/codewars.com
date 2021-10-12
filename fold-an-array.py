@@ -20,19 +20,29 @@
 # I have created other katas. Have a look if you like coding and challenges.
 
 def fold_array(array, runs):
-    lenght = int(len(array))
-    center = int(len(array) / 2)
-    # print(lenght, center)
     result = []
+    print(array, runs)
     for i in range(runs):
+        if int(i) > 0:
+            array = result
+        lenght = int(len(array))
+        center = int(len(array) / 2)
+        result = []
         for index, each in enumerate(array):
             if index < center:
                 result.append(array[index] + array[lenght - index - 1])
-            elif index == center:
+            elif index == center and not int(len(array)) % 2 == 0:
                 result.append(array[index])
-
-        print(result)
-
+    return result
 
 
-test = print(fold_array([1,2,3,4,5], 1))
+print(fold_array([-9, 9, -8, 8, 66, 23], 1))
+print(fold_array([1,2,3,4,5], 2))
+#
+# BEST
+# def fold_array(array, runs):
+#     nums = list(array)
+#     for _ in xrange(runs):
+#         for a in xrange(len(nums) // 2):
+#             nums[a] += nums.pop()
+#     return nums
